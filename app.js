@@ -69,10 +69,14 @@ function listenForCircleSelection(e) {
 }
 
 function concludeExperiment() {
-	document.body.innerHTML = '<h1>The experiment has concluded. Thank you for your participation.</h1>';
-}
+	document.body.innerHTML = `
 
-// show cross for 0.5-1.5 seconds
-// then once it disappears show the blue/orange circles
+		<h3>You pressed Circle A ${trial.circleA} times</h3>
+		<h3>You pressed Circle B ${trial.circleB} times</h3>
+
+		<h1>The experiment has concluded.</h1>
+		<h1>Thank you for your participation.</h1>
+	`;
+}
 
 document.addEventListener('keydown', makeIntro);
