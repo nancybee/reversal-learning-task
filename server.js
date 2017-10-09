@@ -15,9 +15,30 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 app.post('/results', (req, res) => {
-	console.log('body params:', req.body);
+	const fs = require('fs');
+	const { circleA, circleB, initials, limit } = req.body;
+
+// intentionally writing it like this to avoid
+// weird .txt formatting
+	const fileString = 
+`Initials: ${initials}\n
+Circle A: ${circleA}\n
+Circle B: ${circleB}\n
+Trials: ${limit}`;
+
+	const dir = './results';
+
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
+
+	fs.writeFileSync(`results/${req.body.initials}.txt`, fileString);
+
+	console.log('file has been written');
+
 	return res.json({
-		body: req.body
+		success: true,
+		message: 'File has been written'
 	});
 });
 

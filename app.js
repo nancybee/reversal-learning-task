@@ -2,7 +2,7 @@ var root = document.getElementById('root');
 var trial = {
 	circleA: 0,
 	circleB: 0,
-	limit: 1,
+	limit: 2,
 	initials: ''
 };
 
