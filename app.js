@@ -2,7 +2,7 @@ var root = document.getElementById('root');
 var trial = {
 	circleA: 0,
 	circleB: 0,
-	initials: ''
+	initials: '',
 
 	// edit this value to change
 	// how many times the experiment runs
