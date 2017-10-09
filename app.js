@@ -2,7 +2,8 @@ var root = document.getElementById('root');
 var trial = {
 	circleA: 0,
 	circleB: 0,
-	limit: 1
+	limit: 1,
+	initials: ''
 };
 
 function addKeydown(fn) {
@@ -19,6 +20,8 @@ function getRandomNumber(min, max) {
 
 function makeIntro() {
 	removeKeydown(makeIntro);
+
+	trial.initials = prompt('Please enter your initials');
 
 	var instructions = '<h1>In this experiment, a cross will appear on the center of the screen. When it disappears, choose either the <b>blue circle by pressing F</b>, or the <b>orange circle by pressing J</b>.</h1><h1>Press any key to begin</h1>';
 
@@ -75,8 +78,16 @@ function concludeExperiment() {
 		<h3>You pressed Circle B ${trial.circleB} times</h3>
 
 		<h1>The experiment has concluded.</h1>
-		<h1>Thank you for your participation.</h1>
+		<h1>Thank you for your participation, ${trial.initials}.</h1>
 	`;
+
+	$.ajax('/results', {
+		method: 'POST',
+		data: trial
+	})
+	.then(function (res) {
+		console.log(res);
+	});
 }
 
 document.addEventListener('keydown', makeIntro);

@@ -6,15 +6,22 @@ const app = express();
 const PORT = 3000;
 const url = `http://localhost:${PORT}`;
 
-app.use(express.static(__dirname));
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
 app.use(bodyParser.json());
 
-app.post('/download', (req, res) => {
-	console.log('body params:', res.body);
+app.use(express.static(__dirname));
+
+app.post('/results', (req, res) => {
+	console.log('body params:', req.body);
+	return res.json({
+		body: req.body
+	});
 });
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
