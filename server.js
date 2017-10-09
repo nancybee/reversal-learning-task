@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const moment = require('moment');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -27,12 +28,13 @@ Circle B: ${circleB}\n
 Trials: ${limit}`;
 
 	const dir = './results';
+	const filename = `${initials}: ${moment().format('M-D-YY, h:mm a')}`
 
 	if (!fs.existsSync(dir)){
 	    fs.mkdirSync(dir);
 	}
 
-	fs.writeFileSync(`results/${req.body.initials}.txt`, fileString);
+	fs.writeFileSync(`results/${filename}.txt`, fileString);
 
 	console.log('file has been written');
 

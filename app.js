@@ -2,7 +2,7 @@ var root = document.getElementById('root');
 var trial = {
 	circleA: 0,
 	circleB: 0,
-	limit: 2,
+	limit: 10,
 	initials: ''
 };
 
@@ -73,7 +73,6 @@ function listenForCircleSelection(e) {
 
 function concludeExperiment() {
 	document.body.innerHTML = `
-
 		<h3>You pressed Circle A ${trial.circleA} times</h3>
 		<h3>You pressed Circle B ${trial.circleB} times</h3>
 
