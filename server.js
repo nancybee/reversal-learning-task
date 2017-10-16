@@ -17,15 +17,19 @@ app.use(express.static(__dirname));
 
 app.post('/results', (req, res) => {
 	const fs = require('fs');
-	const { circleA, circleB, initials, limit } = req.body;
+	const params = JSON.parse(Object.keys(req.body)[0])
+	const { circleA, circleB, initials, limit, pointsEarned } = params;
+
+	console.log('got this request:', req.body);
 
 // intentionally writing it like this to avoid
 // weird .txt formatting
 	const fileString = 
 `Initials: ${initials}\n
-Circle A: ${circleA}\n
-Circle B: ${circleB}\n
-Trials: ${limit}`;
+Circle A: ${circleA.timesChosen}\n
+Circle B: ${circleB.timesChosen}\n
+Trials: ${limit}\n
+Points Earned: ${pointsEarned}`;
 
 	const dir = './results';
 	const filename = `${initials}: ${moment().format('M-D-YY, h:mm a')}`

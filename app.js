@@ -1,21 +1,19 @@
 var root = document.getElementById('root');
-var trial = {
-	circleA: 0,
-	circleB: 0,
-	initials: '',
 
+var trial = {
 	// edit this value to change
 	// how many times the experiment runs
-	limit: 10
-};
-
-var trial = {
+	limit: 1,
+	initials: '',
+	pointsEarned: 0,
 	circleA: {
 		timesChosen: 0,
+		successRate: 0.75,
 		pointValue: 3
 	},
 	circleB: {
 		timesChosen: 0,
+		successRate: 0.25,
 		pointValue: 9
 	}
 };
@@ -67,16 +65,15 @@ function showCross() {
 }
 
 function listenForCircleSelection(e) {
-	console.log(e);
 	if (e.code === 'KeyF') {
-		trial.circleA += 1;
+		handleCircleSelection(trial.circleA);
 	} else if (e.code === 'KeyJ') {
-		trial.circleB += 1;
+		handleCircleSelection(trial.circleB);
 	} else {
 		return;
 	}
 
-	if (trial.circleA + trial.circleB === trial.limit) {
+	if (trial.circleA.timesChosen + trial.circleB.timesChosen === trial.limit) {
 		concludeExperiment();
 	}
 
@@ -88,8 +85,8 @@ function listenForCircleSelection(e) {
 
 function concludeExperiment() {
 	document.body.innerHTML = `
-		<h3>You pressed Circle A ${trial.circleA} times</h3>
-		<h3>You pressed Circle B ${trial.circleB} times</h3>
+		<h3>You pressed Circle A ${trial.circleA.timesChosen} times</h3>
+		<h3>You pressed Circle B ${trial.circleB.timesChosen} times</h3>
 
 		<h1>The experiment has concluded.</h1>
 		<h1>Thank you for your participation, ${trial.initials}.</h1>
@@ -97,11 +94,29 @@ function concludeExperiment() {
 
 	$.ajax('/results', {
 		method: 'POST',
-		data: trial
+		data: JSON.stringify(trial)
 	})
 	.then(function (res) {
 		console.log(res);
 	});
+}
+
+function handleCircleSelection(circle) {
+	circle.timesChosen += 1;
+
+	if (Math.random() <= circle.successRate) {
+		trial.pointsEarned += circle.pointValue;
+		displayPointsToUser(circle.pointValue, trial.pointsEarned);
+	} else {
+		displayPointsToUser(0, trial.pointsEarned);
+	}
+}
+
+function displayPointsToUser(points, totalPoints) {
+	alert(`
+			You have earned ${points} points!
+			Total points: ${totalPoints}
+		`);
 }
 
 document.addEventListener('keydown', makeIntro);
