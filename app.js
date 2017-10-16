@@ -3,7 +3,7 @@ var root = document.getElementById('root');
 var trial = {
 	// edit this value to change
 	// how many times the experiment runs
-	limit: 1,
+	limit: 10,
 	initials: '',
 	pointsEarned: 0,
 	circleA: {
@@ -73,10 +73,6 @@ function listenForCircleSelection(e) {
 		return;
 	}
 
-	if (trial.circleA.timesChosen + trial.circleB.timesChosen === trial.limit) {
-		concludeExperiment();
-	}
-
 	circle1.style.display = 'none';
 	circle2.style.display = 'none';
 
@@ -87,6 +83,7 @@ function concludeExperiment() {
 	document.body.innerHTML = `
 		<h3>You pressed Circle A ${trial.circleA.timesChosen} times</h3>
 		<h3>You pressed Circle B ${trial.circleB.timesChosen} times</h3>
+		<h3>You've earned a total of ${trial.pointsEarned} points</h3>
 
 		<h1>The experiment has concluded.</h1>
 		<h1>Thank you for your participation, ${trial.initials}.</h1>
@@ -113,10 +110,15 @@ function handleCircleSelection(circle) {
 }
 
 function displayPointsToUser(points, totalPoints) {
-	alert(`
-			You have earned ${points} points!
-			Total points: ${totalPoints}
-		`);
+	swal({
+		title: `You have earned ${points} points!`,
+		text: `Total points: ${totalPoints}`,
+		onClose: function () {
+			if (trial.circleA.timesChosen + trial.circleB.timesChosen === trial.limit) {
+				concludeExperiment();
+			}
+		}
+	})
 }
 
 document.addEventListener('keydown', makeIntro);
