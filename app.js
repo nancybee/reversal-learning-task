@@ -9,6 +9,17 @@ var trial = {
 	limit: 10
 };
 
+var trial = {
+	circleA: {
+		timesChosen: 0,
+		pointValue: 3
+	},
+	circleB: {
+		timesChosen: 0,
+		pointValue: 9
+	}
+};
+
 function addKeydown(fn) {
 	document.addEventListener('keydown', fn);
 }
@@ -56,9 +67,10 @@ function showCross() {
 }
 
 function listenForCircleSelection(e) {
-	if (e.key === 'f') {
+	console.log(e);
+	if (e.code === 'KeyF') {
 		trial.circleA += 1;
-	} else if (e.key === 'j') {
+	} else if (e.code === 'KeyJ') {
 		trial.circleB += 1;
 	} else {
 		return;
