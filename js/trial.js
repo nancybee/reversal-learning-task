@@ -37,27 +37,31 @@
     render: function () {
       var showCross = this.state.showCross;
 
-      return (
-        showCross ? $('div', { className: 'cross' }, '+') :
-        $(
-          'div',
-          { className: 'circle-container' },
-          [
-            $('div', {
-              className: 'circleA',
-              onClick: function () {
-                console.log('circle a clicked');
-              }
-            }),
-            $('div', {
-              className: 'circleB',
-              onClick: function () {
-                console.log('circleB clicked');
-              }
-            }),
-          ]
-        )
-      );
+      if (showCross) {
+        return $('div', { className: 'cross' }, '+')
+      } else {
+          return (
+            showCross ?  :
+            $(
+              'div',
+              { className: 'circle-container' },
+              [
+                $('div', {
+                  className: 'circleA',
+                  onClick: function () {
+                    console.log('circle a clicked');
+                  }
+                }),
+                $('div', {
+                  className: 'circleB',
+                  onClick: function () {
+                    console.log('circleB clicked');
+                  }
+                }),
+              ]
+            )
+          );
+      }
     }
   });
 }(window.React));
