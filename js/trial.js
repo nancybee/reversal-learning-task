@@ -40,7 +40,30 @@
     }
 
     makeNewTrial() {
-      this.setState({ showCross: true }, () => {
+      const { circleA, circleB, limit } = this.state;
+      const halfwayDone = Math.ceil(limit / 2);
+      const trialsRan = circleA.timesChosen + circleB.timesChosen;
+      const newState = {
+        showCross: true
+      };
+
+      if (trialsRan === halfwayDone) {
+        newState.circleA = {
+          ...circleA,
+          baseSuccessRate: circleB.baseSuccessRate,
+          currentSuccessRate: circleB.currentSuccessRate
+        };
+
+        newState.circleB = {
+          ...circleB,
+          baseSuccessRate: circleA.baseSuccessRate,
+          currentSuccessRate: circleA.currentSuccessRate
+        };
+
+        console.log('the circles are switching!');
+      }
+
+      this.setState(newState, () => {
         setTimeout(() => {
           this.setState({ showCross: false });
         }, 1500);
