@@ -1,16 +1,22 @@
 (function (React) {
-  const checkPlural = (num, word) => `${num} ` + (num > 1 ? `${word}s` : word);
+  const checkPlural = (num, word) => `${num} ` + (num !== 1 ? `${word}s` : word);
   const checkPluralCircle = (num) => checkPlural(num, 'time');
 
   window.rltApp.Conclusion = ({ timesChosenA, timesChosenB, totalPoints, initials }) => (
-    <div className="conclusion">
-        <h1>The experiment has concluded.</h1>
+    <div className="conclusion" style={ { fontSize: '32px' } }>
+        <p>The experiment has concluded.</p>
 
-        <h3>You chose the blue circle { checkPluralCircle(timesChosenA) } </h3>
-        <h3>You chose the orange circle { checkPluralCircle(timesChosenB) }</h3>
-        <h3>You've earned { totalPoints } total points.</h3>
+        <p style={ { fontSize: '24px' } }>
+          You chose the <b>blue circle { checkPluralCircle(timesChosenA) }</b>
+        </p>
+        <p style={ { fontSize: '24px' } }>
+          You chose the <b>orange circle { checkPluralCircle(timesChosenB) }</b>
+        </p>
 
-        <h1>Thank you for your participation, { initials }.</h1>
+        <p>
+          You've earned <b>{ totalPoints } total points</b>
+        </p>
+        <p>Thank you for your participation, { initials }.</p>
     </div>
   )
 }(window.React))
