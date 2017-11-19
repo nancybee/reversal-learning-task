@@ -22,6 +22,4 @@
     $(BrowserRouter, null, $('div', null, routes)),
     document.getElementById('root')
   );
-
-	window.app = {};
 }(window.React, window.ReactRouterDOM, window.app.Home, window.app.Trial));
