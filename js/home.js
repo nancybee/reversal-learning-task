@@ -2,12 +2,30 @@
   var $ = React.createElement;
   var styles = { fontSize: '32px' };
   var instructionsText = 'In this experiment, a cross will appear on the center of the screen. When it disappears, choose either the blue circle by pressing F, or the orange circle by pressing J.';
+  var instructions = $('p', null, instructionsText);
+  var beginPrompt = $('p', null, 'Press any key to begin.');
 
-  window.app.Home = function (props) {
-    var instructions = $('p', null, instructionsText);
-    var beginPrompt = $('p', null, 'Press any key to begin.');
+  window.app.Home = React.createClass({
+    componentDidMount: function() {
+      var history = this.props.history;
 
-    // return $('div', null, [title, trialLink]);
-    return $('div', { style: styles }, [instructions, beginPrompt]);
-  }
+      document.addEventListener('keyup', function listenForBegin () {
+        document.removeEventListener('keyup', listenForBegin);
+        console.log('navigating to /trial');
+        history.push('/trial');
+      });
+    },
+
+    render: function () {
+      return $('div', { style: styles }, [instructions, beginPrompt]);
+    }
+  });
+
+  // window.app.Home = function (props) {
+  //   var instructions = $('p', null, instructionsText);
+  //   var beginPrompt = $('p', null, 'Press any key to begin.');
+  //
+  //   // return $('div', null, [title, trialLink]);
+  //   return $('div', { style: styles }, [instructions, beginPrompt]);
+  // }
 }(window.React, window.ReactRouterDOM));
