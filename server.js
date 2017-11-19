@@ -19,7 +19,7 @@ app.post('/results', (req, res) => {
 	console.log('got this request:', req.body);
 
 	const fs = require('fs');
-	const { circleA, circleB, initials, limit, pointsEarned } = req.body;
+	const { circleA, circleB, history, initials, limit, pointsEarned } = req.body;
 
 
 // intentionally writing it like this to avoid
@@ -29,7 +29,8 @@ app.post('/results', (req, res) => {
 Circle A: ${circleA.timesChosen}\n
 Circle B: ${circleB.timesChosen}\n
 Trials: ${limit}\n
-Points Earned: ${pointsEarned}`;
+Points Earned: ${pointsEarned}
+History: ${JSON.stringify(history, null, 4)}`;
 
 /*
 	avg. time between trials

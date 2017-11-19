@@ -109,7 +109,7 @@
         history: {
           ...state.history,
           [`trial${state.circleA.timesChosen + state.circleB.timesChosen + 1}`]: {
-            time: null,
+            time: 'coming soon :D',
             pointsEarned,
             circleA: { currentSuccessRate: state.circleA.currentSuccessRate },
             circleB: { currentSuccessRate: state.circleB.currentSuccessRate }
