@@ -12,7 +12,7 @@
     }),
 
     $(Route, {
-      path: 'trial',
+      path: '/trial',
       component: Trial,
       key: 'trial'
     })
