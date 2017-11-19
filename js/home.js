@@ -20,12 +20,4 @@
       return $('div', { style: styles }, [instructions, beginPrompt]);
     }
   });
-
-  // window.app.Home = function (props) {
-  //   var instructions = $('p', null, instructionsText);
-  //   var beginPrompt = $('p', null, 'Press any key to begin.');
-  //
-  //   // return $('div', null, [title, trialLink]);
-  //   return $('div', { style: styles }, [instructions, beginPrompt]);
-  // }
 }(window.React, window.ReactRouterDOM));
