@@ -3,7 +3,7 @@
   var styles = { fontSize: '32px' };
   var instructionsText = 'In this experiment, a cross will appear on the center of the screen. When it disappears, choose either the blue circle by pressing F, or the orange circle by pressing J.';
   var instructions = $('p', null, instructionsText);
-  var beginPrompt = $('p', null, 'Press any key to begin.');
+  var beginPrompt = $('a', { href: '/trial' }, 'Click here to begin');
 
   window.rltApp.Home = React.createClass({
     componentDidMount: function() {

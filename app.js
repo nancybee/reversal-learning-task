@@ -7,20 +7,12 @@
     $(Route, {
     	path: '/',
     	exact: true,
-    	// component: Home,
-      component: (function (props) {
-        console.log('home props:', props);
-        return $(ReactRouterDOM.Link, { to: '/trial' }, 'go to trial')
-      })
+    	component: Home
     }),
 
     $(Route, {
       path: '/trial',
-      // component: Trial,
-      component: (function (props) {
-        console.log('trial props:', props);
-        return $(ReactRouterDOM.Link, { to: '/' }, 'go to Home')
-      })
+      component: Trial
     })
   ];
 
