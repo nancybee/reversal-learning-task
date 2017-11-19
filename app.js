@@ -7,12 +7,16 @@ var trial = {
 	initials: '',
 	pointsEarned: 0,
 	circleA: {
+		name: 'circleA',
 		timesChosen: 0,
+		baseSuccessRate: 0.75,
 		successRate: 0.75,
 		pointValue: 3
 	},
 	circleB: {
+		name: 'CircleB',
 		timesChosen: 0,
+		baseSuccessRate: 0.25,
 		successRate: 0.25,
 		pointValue: 9
 	}
@@ -66,9 +70,9 @@ function showCross() {
 
 function listenForCircleSelection(e) {
 	if (e.code === 'KeyF') {
-		handleCircleSelection(trial.circleA);
+		handleCircleSelection(trial.circleA, trial.circleB);
 	} else if (e.code === 'KeyJ') {
-		handleCircleSelection(trial.circleB);
+		handleCircleSelection(trial.circleB, trial.circleA);
 	} else {
 		return;
 	}
@@ -98,7 +102,7 @@ function concludeExperiment() {
 	});
 }
 
-function handleCircleSelection(circle) {
+function handleCircleSelection(circle, circleToIncrease) {
 	circle.timesChosen += 1;
 
 	if (Math.random() <= circle.successRate) {
@@ -107,6 +111,19 @@ function handleCircleSelection(circle) {
 	} else {
 		displayPointsToUser(0, trial.pointsEarned);
 	}
+
+	// "reset" the circle's success rate
+	circle.successRate = circle.baseSuccessRate;
+	// and increase the other circle's success rate
+	increaseCircleSuccessRate(circleToIncrease);
+}
+
+function increaseCircleSuccessRate(circle) {
+		if (circle.successRate >= 1) {
+				return;
+		}
+
+		circle.successRate += 0.05;
 }
 
 function displayPointsToUser(points, totalPoints) {
