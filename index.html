@@ -20,6 +20,27 @@
 			<div id="circle2"></div>
 		</div>
 
+		<div class="progress hidden">
+			<h2>You picked Circle A, you have earned 10 points</h2>
+			<h2>Total points: 100</h2>
+
+			<button type="button">OK</button>
+		</div>
+
+		<script type="text/javascript">
+		swal({
+			title: `You have earned ${points} points!`,
+			text: `Total points: ${totalPoints}`,
+			onClose: function () {
+				if (trial.circleA.timesChosen + trial.circleB.timesChosen === trial.limit) {
+					concludeExperiment();
+				}
+			}
+		})
+		</script>
+
+		</div>
+
 		<script type="text/javascript" src="app.js"></script>
 	</body>
-</html> 
+</html>
