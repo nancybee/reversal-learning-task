@@ -3,6 +3,9 @@
   var styles = { fontSize: '32px' };
   var beginPrompt = $('a', { href: '/trial' }, 'Click here to begin');
 
+  a = {};
+  console.log({...a});
+
   window.rltApp.Home = React.createClass({
     render: function () {
       return $('div', { style: styles }, [
