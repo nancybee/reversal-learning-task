@@ -6,16 +6,6 @@
   var beginPrompt = $('a', { href: '/trial' }, 'Click here to begin');
 
   window.rltApp.Home = React.createClass({
-    componentDidMount: function() {
-      var history = this.props.history;
-
-      document.addEventListener('keyup', function listenForBegin () {
-        document.removeEventListener('keyup', listenForBegin);
-        console.log('navigating to /trial');
-        history.push('/trial');
-      });
-    },
-
     render: function () {
       return $('div', { style: styles }, [instructions, beginPrompt]);
     }
