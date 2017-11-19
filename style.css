@@ -3,10 +3,9 @@ body {
 	font-weight: normal;
 }
 
-#cross {
+.cross {
 	font-size: 200px;
 	text-align: center;
-	display: none;
 }
 
 .circle-container {

@@ -8,8 +8,16 @@
     { className: 'circle-container' },
     ['trial time', circleA, circleB]
   );
+  var cross = $('div', { className: 'cross' }, '+');
 
-  window.rltApp.Trial = function () {
-    return circleContainer;
-  };
+  window.rltApp.Trial = React.createClass({
+    getInitialState: function () {
+      return { showCross: true };
+    },
+
+    render: function () {
+      console.log(this.state);
+      return cross;
+    }
+  })
 }(window.React))
