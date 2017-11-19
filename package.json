@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "babel js --presets babel-preset-es2015 --out-dir dist",
     "watch": "babel js --out-dir dist --watch",
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
