@@ -13,6 +13,6 @@ This app will be used to test reversal learning and extinction in human child pa
 * Type `npm start` in the terminal
 * Go to http://localhost:3000
 
-By default, the trial runs 10 times. If you want to change the number of trials, go into app.js and look for `limit: 10` at the top of the file. Replace `10` with the number of trials you want to run.
+The experiment is set to run for 10 trials. To change this number, go to the `js` folder and find `trial.js`. Line 27 of that file is the number of trials.
 
-__After each experiment, the test results will be in reversal-learning-task/results as .txt files__
+__After each experiment, the test results will be in the `/results` folder as .txt files__
