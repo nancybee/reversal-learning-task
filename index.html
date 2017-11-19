@@ -1,42 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<base href="/" />
 		<title>HRL Experiment</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.9/react.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/0.14.9/react-dom.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/4.2.0/react-router.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.2.2/react-router-dom.js"></script>
 	</head>
 
 	<body>
-		<div id="root">
-			<h1>Welcome to the experiment. Press any key to begin.</h1>
-		</div>
-
-		<div id="circles">
-			<div id="circle1"></div>
-			<div id="cross">+</div>
-			<div id="circle2"></div>
-		</div>
-
-		<div class="progress hidden">
-			<h2>You picked Circle A, you have earned 10 points</h2>
-			<h2>Total points: 100</h2>
-
-			<button type="button">OK</button>
-		</div>
-
-		<script type="text/javascript">
-		swal({
-			title: `You have earned ${points} points!`,
-			text: `Total points: ${totalPoints}`,
-			onClose: function () {
-				if (trial.circleA.timesChosen + trial.circleB.timesChosen === trial.limit) {
-					concludeExperiment();
-				}
-			}
-		})
-		</script>
-
-		</div>
-
-		<script type="text/javascript" src="app.js"></script>
+		<div id="root"></div>
+		<script>window.rltApp = {};</script>
+		<script src="dist/Conclusion.js"></script>
+		<script src="dist/Home.js"></script>
+		<script src="dist/Progress.js"></script>
+		<script src="dist/Trial.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>

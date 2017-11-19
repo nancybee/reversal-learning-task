@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "babel js --presets babel-preset-es2015 --out-dir dist",
+    "watch": "babel js --out-dir dist --watch",
     "start": "node server.js"
   },
   "repository": {
@@ -22,5 +24,11 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
     "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }

@@ -3,31 +3,29 @@ body {
 	font-weight: normal;
 }
 
-#cross {
+.cross {
 	font-size: 200px;
 	text-align: center;
-	display: none;
 }
 
-#circles {
+.circle-container {
 	margin: 50px 100px;
 	display: flex;
 	justify-content: space-between;
 }
 
-#circle1, #circle2 {
+.circleA, .circleB {
 	width: 250px;
 	height: 250px;
 	border-radius: 100%;
-	display: none;
 }
 
-#circle1 {
+.circleA {
 	background-color: blue;
 	float: left;
 }
 
-#circle2 {
+.circleB {
 	background-color: orange;
 	float: right;
 }
