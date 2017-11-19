@@ -12,17 +12,18 @@
 
   window.rltApp.Trial = React.createClass({
     getInitialState: function () {
-      return { showCross: true };
+      return { initials: '', showCross: true };
     },
 
     componentDidMount: function () {
       var me = this;
+      var initials = prompt('Please enter your initials');
 
-      setTimeout(function () {
-        me.setState({ showCross: false }, function () {
-          console.log('showCross is false');
-        });
-      }, 1500);
+      this.setState({ initials: initials }, function () {
+        setTimeout(function () {
+          me.setState({ showCross: false });
+        }, 1500);
+      });
     },
 
     render: function () {
