@@ -5,7 +5,7 @@
   var instructions = $('p', null, instructionsText);
   var beginPrompt = $('p', null, 'Press any key to begin.');
 
-  windowrltApp.Home = React.createClass({
+  window.rltApp.Home = React.createClass({
     componentDidMount: function() {
       var history = this.props.history;
 
