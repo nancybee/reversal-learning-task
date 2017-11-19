@@ -1,35 +1,63 @@
 (function (React) {
   var $ = React.createElement;
 
-  var circleA = $('div', { className: 'circleA', key: 'circleA' });
-  var circleB = $('div', { className: 'circleB', key: 'circleB' });
-  var circleContainer = $(
-    'div',
-    { className: 'circle-container' },
-    [circleA, circleB]
-  );
-  var cross = $('div', { className: 'cross' }, '+');
-
   window.rltApp.Trial = React.createClass({
     getInitialState: function () {
-      return { initials: '', showCross: true };
+      return {
+        circleA: {
+          baseSuccessRate: 0.75,
+          currentSuccessRate: 0.75,
+          pointValue: 3,
+          timesChosen: 0,
+        },
+        circleB: {
+          baseSuccessRate: 0.25,
+          currentSuccessRate: 0.25,
+          pointValue: 3,
+          timesChosen: 0,
+        },
+        initials: '',
+        limit: 3,
+        points: 0,
+        showCross: false
+      };
     },
 
-    componentDidMount: function () {
-      var me = this;
-      var initials = prompt('Please enter your initials');
-
-      this.setState({ initials: initials }, function () {
-        setTimeout(function () {
-          me.setState({ showCross: false });
-        }, 1500);
-      });
-    },
+    // componentDidMount: function () {
+    //   var me = this;
+    //   var initials = prompt('Please enter your initials');
+    //
+    //   this.setState({ initials: initials }, function () {
+    //     setTimeout(function () {
+    //       me.setState({ showCross: false });
+    //     }, 1500);
+    //   });
+    // },
 
     render: function () {
       var showCross = this.state.showCross;
 
-      return showCross ? cross : circleContainer;
+      return (
+        showCross ? $('div', { className: 'cross' }, '+') :
+        $(
+          'div',
+          { className: 'circle-container' },
+          [
+            $('div', {
+              className: 'circleA',
+              onClick: function () {
+                console.log('circle a clicked');
+              }
+            }),
+            $('div', {
+              className: 'circleB',
+              onClick: function () {
+                console.log('circleB clicked');
+              }
+            }),
+          ]
+        )
+      );
     }
-  })
-}(window.React))
+  });
+}(window.React));
