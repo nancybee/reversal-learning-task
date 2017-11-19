@@ -13,7 +13,7 @@
         circleB: {
           baseSuccessRate: 0.25,
           currentSuccessRate: 0.25,
-          pointValue: 3,
+          pointValue: 9,
           timesChosen: 0,
         },
         initials: '',
@@ -35,6 +35,8 @@
     // },
 
     render: function () {
+      console.log('trial state:', this.state);
+      var me = this;
       var showCross = this.state.showCross;
 
       if (showCross) {
@@ -45,7 +47,20 @@
               $('div', {
                 className: 'circleA',
                 onClick: function () {
-                  console.log('circle a clicked');
+                  me.setState(Object.assign(
+                    {},
+                    me.state,
+                    {
+                      circleA: Object.assign(
+                        {},
+                        me.state.circleA,
+                        {
+                          currentSuccessRate: me.state.circleA.baseSuccessRate,
+                          timesChosen: me.state.circleA.timesChosen + 1
+                        }
+                      )
+                    }
+                  ));
                 }
               }),
               $('div', {
