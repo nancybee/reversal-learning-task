@@ -16,15 +16,15 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 app.post('/results', (req, res) => {
-	const fs = require('fs');
-	const params = JSON.parse(Object.keys(req.body)[0])
-	const { circleA, circleB, initials, limit, pointsEarned } = params;
-
 	console.log('got this request:', req.body);
+
+	const fs = require('fs');
+	const { circleA, circleB, initials, limit, pointsEarned } = req.body;
+
 
 // intentionally writing it like this to avoid
 // weird .txt formatting
-	const fileString = 
+	const fileString =
 `Initials: ${initials}\n
 Circle A: ${circleA.timesChosen}\n
 Circle B: ${circleB.timesChosen}\n

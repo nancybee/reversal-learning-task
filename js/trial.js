@@ -1,4 +1,4 @@
-(function (React, Progress, Conclusion) {
+(function (React, Progress, Conclusion, fetch) {
   const increaseCircleSuccessRate = (rate) => rate >= 1 ? 1 : rate + 0.05;
 
   class Trial extends React.Component {
@@ -19,7 +19,7 @@
           timesChosen: 0,
         },
         initials: '',
-        limit: 3,
+        limit: 1,
         pointsEarned: 0,
         totalPoints: 0,
         showCross: true,
@@ -112,6 +112,8 @@
           showProgress: false
         });
 
+        fetch('/results', this.state);
+
         return;
       }
 
@@ -178,4 +180,4 @@
   }
 
   window.rltApp.Trial = Trial;
-}(window.React, window.rltApp.Progress, window.rltApp.Conclusion));
+}(window.React, window.rltApp.Progress, window.rltApp.Conclusion, window.rltApp.fetch));
