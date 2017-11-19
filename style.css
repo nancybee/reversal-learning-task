@@ -21,12 +21,12 @@ body {
 }
 
 .circleA {
-	background-color: blue;
+	background-color: black;
 	float: left;
 }
 
 .circleB {
-	background-color: orange;
+	background-color: black;
 	float: right;
 }
 

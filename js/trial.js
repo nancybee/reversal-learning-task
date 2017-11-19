@@ -30,7 +30,8 @@
         totalPoints: 0,
         showCross: true,
         showProgress: false,
-        trialOver: false
+        trialOver: false,
+        history: {}
       };
 
       this.handleCircleClick = this.handleCircleClick.bind(this);
@@ -104,7 +105,16 @@
         },
         showProgress: true,
         pointsEarned,
-        totalPoints: newTotalPoints
+        totalPoints: newTotalPoints,
+        history: {
+          ...state.history,
+          [`trial${state.circleA.timesChosen + state.circleB.timesChosen + 1}`]: {
+            time: null,
+            pointsEarned,
+            circleA: { currentSuccessRate: state.circleA.currentSuccessRate },
+            circleB: { currentSuccessRate: state.circleB.currentSuccessRate }
+          }
+        }
       });
     }
 

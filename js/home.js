@@ -8,7 +8,7 @@
       return (
         <div style={ styles }>
           <div>
-            In this experiment, a <b>+</b> will appear on the screen. When it disappears, choose either the <b>blue circle by pressing F</b>, or the <b>orange circle by pressing J</b>.
+            In this experiment, a <b>+</b> will appear on the screen. When it disappears, choose either <b>Circle A by pressing F</b>, or <b>Circle B by pressing J</b>.
           </div>
 
           <br />

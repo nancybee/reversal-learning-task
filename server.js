@@ -31,6 +31,26 @@ Circle B: ${circleB.timesChosen}\n
 Trials: ${limit}\n
 Points Earned: ${pointsEarned}`;
 
+/*
+	avg. time between trials
+	avg. points per trial
+	history: {
+		trial1: {
+			time: 100s,
+			pointsEarned: 0,
+			circleA: { currentSuccessRate: 0.75 }
+			circleB: { currentSuccessRate: 0.25 }
+		},
+
+		trial2: {
+			time: 10s,
+			pointsEarned: 9,
+			circleA: { currentSuccessRate: 0.75 }
+			circleB: { currentSuccessRate: 0.30 }
+		}
+	}
+*/
+
 	const dir = './results';
 	const filename = `${initials}: ${moment().format('M-D-YY, h:mm a')}`
 

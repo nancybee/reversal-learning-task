@@ -7,10 +7,10 @@
         <p>The experiment has concluded.</p>
 
         <p style={ { fontSize: '24px' } }>
-          You chose the <b>blue circle { checkPluralCircle(timesChosenA) }</b>
+          You chose <b>Circle A { checkPluralCircle(timesChosenA) }</b>
         </p>
         <p style={ { fontSize: '24px' } }>
-          You chose the <b>orange circle { checkPluralCircle(timesChosenB) }</b>
+          You chose <b>Circle B { checkPluralCircle(timesChosenB) }</b>
         </p>
 
         <p>
