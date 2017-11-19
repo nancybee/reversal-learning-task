@@ -1,6 +1,6 @@
 (function (React, ReactRouterDOM, Home, Trial) {
   var $ = React.createElement;
-  var HashRouter = ReactRouterDOM.HashRouter;
+  var BrowserRouter = ReactRouterDOM.BrowserRouter;
   var Route = ReactRouterDOM.Route;
 
   var routes = [
@@ -19,9 +19,9 @@
   ];
 
   ReactDOM.render(
-    $(HashRouter, null, $('div', null, routes)),
+    $(BrowserRouter, null, $('div', null, routes)),
     document.getElementById('root')
   );
 
 	window.app = {};
-}(window.React, window.ReactRouterDOM, window.app.home, window.app.trial));
+}(window.React, window.ReactRouterDOM, window.app.Home, window.app.Trial));
