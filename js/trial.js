@@ -38,28 +38,23 @@
       var showCross = this.state.showCross;
 
       if (showCross) {
-        return $('div', { className: 'cross' }, '+')
+        return $('div', { className: 'cross' }, '+');
       } else {
-          return (
-            showCross ?  :
-            $(
-              'div',
-              { className: 'circle-container' },
-              [
-                $('div', {
-                  className: 'circleA',
-                  onClick: function () {
-                    console.log('circle a clicked');
-                  }
-                }),
-                $('div', {
-                  className: 'circleB',
-                  onClick: function () {
-                    console.log('circleB clicked');
-                  }
-                }),
-              ]
-            )
+          return $('div', { className: 'circle-container' },
+            [
+              $('div', {
+                className: 'circleA',
+                onClick: function () {
+                  console.log('circle a clicked');
+                }
+              }),
+              $('div', {
+                className: 'circleB',
+                onClick: function () {
+                  console.log('circleB clicked');
+                }
+              }),
+            ]
           );
       }
     }
