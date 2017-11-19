@@ -1,4 +1,4 @@
-(function (React, Progress, Conclusion, fetch) {
+(function (React, Progress, Conclusion, Keyable, fetch) {
   const increaseCircleSuccessRate = (rate) => rate >= 1 ? 1 : rate + 0.05;
 
   class Trial extends React.Component {
@@ -171,19 +171,30 @@
       }
 
       return (
-        <div>
-            <div
-              className="circleA"
-              onClick={ () => this.handleCircleClick('circleA', 'circleB') }
-            />
-            <div
-              className="circleB"
-              onClick={ () => this.handleCircleClick('circleB', 'circleA') }
-            />
+        <div className="trial">
+          <Keyable
+            acceptedKey="F"
+            handleKeyup={ () => this.handleCircleClick('circleA', 'circleB') }
+          >
+            <div className="circleA" />
+          </Keyable>
+
+          <Keyable
+            acceptedKey="J"
+            handleKeyup={ () => this.handleCircleClick('circleB', 'circleA') }
+          >
+            <div className="circleB" />
+          </Keyable>
         </div>
       );
     }
   }
 
   window.rltApp.Trial = Trial;
-}(window.React, window.rltApp.Progress, window.rltApp.Conclusion, window.rltApp.fetch));
+}(
+  window.React,
+  window.rltApp.Progress,
+  window.rltApp.Conclusion,
+  window.rltApp.Keyable,
+  window.rltApp.fetch
+));
