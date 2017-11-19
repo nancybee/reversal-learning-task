@@ -1,9 +1,9 @@
 (function (React) {
-  var $ = React.createElement;
+  class Trial extends React.Component {
+    constructor(props) {
+      super(props);
 
-  window.rltApp.Trial = React.createClass({
-    getInitialState: function () {
-      return {
+      this.state = {
         circleA: {
           baseSuccessRate: 0.75,
           currentSuccessRate: 0.75,
@@ -19,59 +19,37 @@
         initials: '',
         limit: 3,
         points: 0,
-        showCross: false
+        showCross: true
       };
-    },
+    }
 
-    // componentDidMount: function () {
-    //   var me = this;
-    //   var initials = prompt('Please enter your initials');
-    //
-    //   this.setState({ initials: initials }, function () {
-    //     setTimeout(function () {
-    //       me.setState({ showCross: false });
-    //     }, 1500);
-    //   });
-    // },
+    componentDidMount() {
+      const initials = prompt('Please enter your initials');
 
-    render: function () {
-      console.log('trial state:', this.state);
-      var me = this;
-      var showCross = this.state.showCross;
+      this.setState({ initials }, () => {
+        setTimeout(() => {
+          this.setState({ showCross: false });
+        }, 1500);
+      });
+    }
+
+    render() {
+      console.log('trial state, boi:', this.props);
+
+      const { showCross } = this.state;
 
       if (showCross) {
-        return $('div', { className: 'cross' }, '+');
-      } else {
-          return $('div', { className: 'circle-container' },
-            [
-              $('div', {
-                className: 'circleA',
-                onClick: function () {
-                  me.setState(Object.assign(
-                    {},
-                    me.state,
-                    {
-                      circleA: Object.assign(
-                        {},
-                        me.state.circleA,
-                        {
-                          currentSuccessRate: me.state.circleA.baseSuccessRate,
-                          timesChosen: me.state.circleA.timesChosen + 1
-                        }
-                      )
-                    }
-                  ));
-                }
-              }),
-              $('div', {
-                className: 'circleB',
-                onClick: function () {
-                  console.log('circleB clicked');
-                }
-              }),
-            ]
-          );
+        return (<div className="cross">+</div>);
       }
+
+      return (
+        <div>
+            <div className="circleA" onClick={ () => console.log('circleA clicked?') }></div>
+            <div className="circleB" onClick={ () => console.log('circleB clicked?') }></div>
+        </div>
+      );
     }
-  });
+  }
+
+  window.rltApp.Trial = Trial;
 }(window.React));
