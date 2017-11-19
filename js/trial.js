@@ -9,7 +9,7 @@
     ['trial time', circleA, circleB]
   );
 
-  window.app.Trial = function () {
+  windowrltApp.Trial = function () {
     return circleContainer;
   };
 }(window.React))

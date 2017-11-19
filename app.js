@@ -7,14 +7,20 @@
     $(Route, {
     	path: '/',
     	exact: true,
-    	component: Home,
-      key: 'home',
+    	// component: Home,
+      component: (function (props) {
+        console.log('home props:', props);
+        return $(ReactRouterDOM.Link, { to: '/trial' }, 'go to trial')
+      })
     }),
 
     $(Route, {
       path: '/trial',
-      component: Trial,
-      key: 'trial'
+      // component: Trial,
+      component: (function (props) {
+        console.log('trial props:', props);
+        return $(ReactRouterDOM.Link, { to: '/' }, 'go to Home')
+      })
     })
   ];
 
@@ -22,4 +28,4 @@
     $(BrowserRouter, null, $('div', null, routes)),
     document.getElementById('root')
   );
-}(window.React, window.ReactRouterDOM, window.app.Home, window.app.Trial));
+}(window.React, window.ReactRouterDOM, windowrltApp.Home, windowrltApp.Trial));
