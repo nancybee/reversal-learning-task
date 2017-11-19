@@ -14,7 +14,10 @@
         ', ',
         'or the ',
         $('b', null, 'orange circle by pressing J'),
-        '.'
+        '.',
+        $('br'),
+        $('br'),
+        beginPrompt
       ]);
     }
   });
