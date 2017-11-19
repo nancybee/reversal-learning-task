@@ -8,8 +8,7 @@
       this.state = {
         circleA: {
           baseSuccessRate: 0.75,
-          // currentSuccessRate: 0.75,
-          currentSuccessRate: 1,
+          currentSuccessRate: 0.75,
           pointValue: 3,
           timesChosen: 0,
         },
@@ -28,6 +27,7 @@
       };
 
       this.handleCircleClick = this.handleCircleClick.bind(this);
+      this.returnToTrial = this.returnToTrial.bind(this);
     }
 
     componentDidMount() {
@@ -65,13 +65,20 @@
       });
     }
 
+    returnToTrial() {
+      const { state } = this;
+
+      this.setState({
+        showProgress: false
+      });
+    }
+
     render() {
-      console.log('trial state, boi:', this.state);
+      console.log('trial state:', this.state);
 
       const { showCross, showProgress, pointsEarned, totalPoints } = this.state;
 
       if (showCross) {
-        console.log('showing cross');
         return (<div className="cross">+</div>);
       }
 
@@ -81,6 +88,7 @@
           <Progress
               pointsEarned={ pointsEarned }
               totalPoints={ totalPoints }
+              handleClick={ this.returnToTrial }
           />
         );
       }
