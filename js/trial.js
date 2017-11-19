@@ -6,6 +6,7 @@
       super(props);
 
       this.state = {
+        // Initial state for the experiment.
         circleA: {
           baseSuccessRate: 0.75,
           currentSuccessRate: 0.75,
@@ -19,7 +20,12 @@
           timesChosen: 0,
         },
         initials: '',
+        /*
+          This is how many trials the experiment runs for.
+          You may change this value for more or less trials.
+        */
         limit: 10,
+
         pointsEarned: 0,
         totalPoints: 0,
         showCross: true,
