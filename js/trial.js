@@ -19,7 +19,7 @@
           timesChosen: 0,
         },
         initials: '',
-        limit: 1,
+        limit: 10,
         pointsEarned: 0,
         totalPoints: 0,
         showCross: true,
