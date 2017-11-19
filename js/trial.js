@@ -151,11 +151,12 @@
       if (showProgress) {
         console.log('showing progress');
         return (
-          <Progress
-              pointsEarned={ pointsEarned }
-              totalPoints={ totalPoints }
-              handleClick={ this.returnToTrial }
-          />
+          <Keyable handleKeyup={ this.returnToTrial }>
+            <Progress
+                pointsEarned={ pointsEarned }
+                totalPoints={ totalPoints }
+            />
+          </Keyable>
         );
       }
 
