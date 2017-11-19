@@ -1,4 +1,4 @@
-(function (React, Progress) {
+(function (React, Progress, Conclusion) {
   const increaseCircleSuccessRate = (rate) => rate >= 1 ? 1 : rate + 0.05;
 
   class Trial extends React.Component {
@@ -23,7 +23,8 @@
         pointsEarned: 0,
         totalPoints: 0,
         showCross: true,
-        showProgress: false
+        showProgress: false,
+        trialOver: false
       };
 
       this.handleCircleClick = this.handleCircleClick.bind(this);
@@ -34,14 +35,27 @@
       const initials = prompt('Please enter your initials');
 
       this.setState({ initials }, () => {
+        this.makeNewTrial();
+      });
+    }
+
+    makeNewTrial() {
+      this.setState({ showCross: true }, () => {
         setTimeout(() => {
           this.setState({ showCross: false });
         }, 1500);
       });
     }
 
+    checkTrialOver() {
+      const { circleA, circleB, limit } = this.state;
+
+      return circleA.timesChosen + circleB.timesChosen >= limit;
+    }
+
     handleCircleClick(chosenCircle, otherCircle) {
       const { state } = this;
+
       const success = Math.random() <= state[chosenCircle].currentSuccessRate;
       const pointsEarned = success ? state[chosenCircle].pointValue : 0;
       const newTotalPoints = state.totalPoints + pointsEarned;
@@ -66,17 +80,38 @@
     }
 
     returnToTrial() {
+      if (this.checkTrialOver()) {
+        console.log('the trial is over');
+
+        this.setState({
+          trialOver: true,
+          showCross: false,
+          showProgress: false
+        });
+
+        return;
+      }
+
       const { state } = this;
 
-      this.setState({
-        showProgress: false
+      this.setState({ showProgress: false }, () => {
+        this.makeNewTrial();
       });
     }
 
     render() {
       console.log('trial state:', this.state);
 
-      const { showCross, showProgress, pointsEarned, totalPoints } = this.state;
+      const {
+        circleA,
+        circleB,
+        initials,
+        showCross,
+        showProgress,
+        pointsEarned,
+        totalPoints,
+        trialOver
+      } = this.state;
 
       if (showCross) {
         return (<div className="cross">+</div>);
@@ -89,6 +124,17 @@
               pointsEarned={ pointsEarned }
               totalPoints={ totalPoints }
               handleClick={ this.returnToTrial }
+          />
+        );
+      }
+
+      if (trialOver) {
+        return (
+          <Conclusion
+            timesChosenA={ circleA.timesChosen }
+            timesChosenB={ circleB.timesChosen }
+            totalPoints={ totalPoints }
+            initials={ initials }
           />
         );
       }
@@ -109,4 +155,4 @@
   }
 
   window.rltApp.Trial = Trial;
-}(window.React, window.rltApp.Progress));
+}(window.React, window.rltApp.Progress, window.rltApp.Conclusion));
