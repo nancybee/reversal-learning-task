@@ -1,7 +1,7 @@
 (function (React, ReactRouterDOM) {
   var $ = React.createElement;
-  var instructionsText = 'In this experiment, a cross will appear on the center of the screen. When it disappears, choose either the blue circle by pressing F, or the orange circle by pressing J.';
   var styles = { fontSize: '32px' };
+  var instructionsText = 'In this experiment, a cross will appear on the center of the screen. When it disappears, choose either the blue circle by pressing F, or the orange circle by pressing J.';
 
   window.app.Home = function (props) {
     var instructions = $('p', null, instructionsText);
