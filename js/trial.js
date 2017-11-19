@@ -6,7 +6,7 @@
   var circleContainer = $(
     'div',
     { className: 'circle-container' },
-    ['trial time', circleA, circleB]
+    [circleA, circleB]
   );
   var cross = $('div', { className: 'cross' }, '+');
 
@@ -15,9 +15,20 @@
       return { showCross: true };
     },
 
+    componentDidMount: function () {
+      var me = this;
+
+      setTimeout(function () {
+        me.setState({ showCross: false }, function () {
+          console.log('showCross is false');
+        });
+      }, 1500);
+    },
+
     render: function () {
-      console.log(this.state);
-      return cross;
+      var showCross = this.state.showCross;
+
+      return showCross ? cross : circleContainer;
     }
   })
 }(window.React))
