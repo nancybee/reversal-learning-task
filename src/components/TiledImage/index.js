@@ -11,24 +11,31 @@ class TiledImage extends Component {
 	}
 
 	componentDidMount() {
-		const { img } = this.props;
 		const image = new Image();
-		const width = 500;
-		const height = 333.5;
 		const pieces = [];
+		const {
+			rows, columns,
+			image: {
+				src,
+				width,
+				height
+			}
+		} = this.props;
 
 		image.onload = () => {
-			for (let x = 0; x < 2; ++x) {
-				for (let y = 0; y < 2; ++y) {
+			for (let x = 0; x < rows; ++x) {
+				for (let y = 0; y < columns; ++y) {
 					let canvas = document.createElement('canvas');
 					let context = canvas.getContext('2d');
 
-					canvas.width = width;
-					canvas.height = height;
+					canvas.width = width / rows;
+					canvas.height = height / columns;
 
-					context.drawImage(
-						image, x * width, y * height, width, height,
-						0, 0, width, height
+					context.drawImage(image,
+						x * canvas.width, y * canvas.height,
+						canvas.width, canvas.height,
+						0, 0,
+						canvas.width, canvas.height
 					);
 
 					pieces.push(canvas.toDataURL());
@@ -39,14 +46,14 @@ class TiledImage extends Component {
 			this.setState({ pieces });
 		};
 
-		image.src = img;
+		image.src = src;
 	}
 
 	render() {
 		const { pieces } = this.state;
-		const { tilesToShow } = this.props;
+		const { tiles } = this.props;
 
-		const lower = Math.min(pieces.length, tilesToShow);
+		const lower = Math.min(pieces.length, tiles);
 
 		return Array(lower)
 			.fill()
@@ -55,8 +62,14 @@ class TiledImage extends Component {
 }
 
 TiledImage.propTypes = {
-	img: PropTypes.string,
-	tilesToShow: PropTypes.number
+	image: PropTypes.shape({
+		src: PropTypes.string,
+		width: PropTypes.number,
+		height: PropTypes.number
+	}),
+	tiles: PropTypes.number,
+	rows: PropTypes.number,
+	columns: PropTypes.number
 };
 
 export default TiledImage;
