@@ -1,0 +1,21 @@
+Initials: UYB
+
+Circle A: 1
+
+Circle B: 0
+
+Trials: 1
+
+Points Earned: 0
+History: {
+    "trial1": {
+        "time": "coming soon :D",
+        "pointsEarned": 0,
+        "circleA": {
+            "currentSuccessRate": 0.75
+        },
+        "circleB": {
+            "currentSuccessRate": 0.25
+        }
+    }
+}
