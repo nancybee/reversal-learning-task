@@ -1,0 +1,50 @@
+body {
+	font-family: avenir;
+	font-weight: normal;
+}
+
+.cross {
+	font-size: 200px;
+	text-align: center;
+}
+
+.circle-container {
+	margin: 50px 100px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.circleA, .circleB {
+	width: 250px;
+	height: 250px;
+	border-radius: 100%;
+}
+
+.circleA {
+	background-color: black;
+	float: left;
+}
+
+.circleB {
+	background-color: black;
+	float: right;
+}
+
+.progress {
+	background: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+}
+
+.progress button {
+	font-size: 48px;
+	padding: 20px 40px;
+}
+
+.hidden {
+	display: none;
+}
