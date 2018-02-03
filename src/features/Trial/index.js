@@ -178,7 +178,7 @@ export default class Trial extends Component {
 		if (showProgress) {
 			console.log('showing progress');
 			return (
-				<Keyable handleKeyup={ this.returnToTrial }>
+				<Keyable handleKeyup={ () => null }>
 					<Progress
 						pointsEarned={ pointsEarned }
 						totalPoints={ totalPoints }
