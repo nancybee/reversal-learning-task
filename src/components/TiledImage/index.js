@@ -31,7 +31,8 @@ class TiledImage extends Component {
 					canvas.width = width / rows;
 					canvas.height = height / columns;
 
-					context.drawImage(image,
+					context.drawImage(
+						image,
 						x * canvas.width, y * canvas.height,
 						canvas.width, canvas.height,
 						0, 0,
@@ -55,9 +56,20 @@ class TiledImage extends Component {
 
 		const lower = Math.min(pieces.length, tiles);
 
-		return Array(lower)
-			.fill()
-			.map((_, index) => (<img src={ pieces[index] } />));
+		return (
+			<div className="image-tiles">
+				{
+					Array(lower)
+						.fill()
+						.map((_, index) => (
+							<img
+								src={ pieces[index] }
+								key={ index.toString() }
+							/>
+						))
+				}
+			</div>
+		);
 	}
 }
 
