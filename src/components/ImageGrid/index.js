@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class ImageGrid extends Component {
+class TiledImage extends Component {
 	constructor(props) {
 		super(props);
 
@@ -54,9 +54,9 @@ class ImageGrid extends Component {
 	}
 }
 
-ImageGrid.propTypes = {
+TiledImage.propTypes = {
 	img: PropTypes.string,
 	tilesToShow: PropTypes.number
 };
 
-export default ImageGrid;
+export default TiledImage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import image from 'assets/koi-fish.png';
-import ImageGrid from 'components/ImageGrid';
+import TiledImage from 'components/TiledImage';
 
 export default ({ pointsEarned, totalPoints }) => (
 	<div className="progress" style={ { fontSize: '32px' } }>
@@ -8,6 +8,6 @@ export default ({ pointsEarned, totalPoints }) => (
 		<b><p>Total points: { totalPoints }</p></b>
 		<p>Press any key to continue</p>
 
-		<ImageGrid img={ image } tilesToShow={ 100 } />
+		<TiledImage img={ image } tilesToShow={ 100 } />
 	</div>
 );
