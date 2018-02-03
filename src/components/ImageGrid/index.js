@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './ImageGrid.scss';
 
 class ImageGrid extends Component {
 	constructor(props) {
@@ -54,23 +53,6 @@ class ImageGrid extends Component {
 			.map((_, index) => (<img src={ pieces[index] } />));
 	}
 }
-
-// const ImageGrid = ({ tilesToShow }) => (
-// 	<div className="image-grid">
-// 		{
-// 			Array(tilesToShow)
-// 				.fill()
-// 				.map((_, index) => (
-// 					<div
-// 						className={ `image-grid piece${index + 1}` }
-// 						style={ {
-// 							'backgroundPosition': makeBackgroundPosition(index)
-// 						} }
-// 					/>
-// 				))
-// 		}
-// 	</div>
-// );
 
 ImageGrid.propTypes = {
 	img: PropTypes.string,
