@@ -23,21 +23,21 @@ class TiledImage extends Component {
 		} = this.props;
 
 		image.onload = () => {
-			for (let x = 0; x < rows; ++x) {
-				let currentColumn = [];
+			for (let y = 0; y < rows; ++y) {
+				let currentRow = [];
 
-				for (let y = 0; y < columns; ++y) {
+				for (let x = 0; x < columns; ++x) {
 					let canvas = document.createElement('canvas');
 					let context = canvas.getContext('2d');
 
-					canvas.width = width / rows;
-					canvas.height = height / columns;
+					canvas.width = width / columns;
+					canvas.height = height / rows;
 
 					context.drawImage(
 						image,
 						x * canvas.width, y * canvas.height,
 
-						// width of each tile
+						// width/height of each tile
 						canvas.width, canvas.height,
 
 						// space between each piece
@@ -46,16 +46,13 @@ class TiledImage extends Component {
 						canvas.width, canvas.height
 					);
 
-					currentColumn.push(canvas.toDataURL());
+					currentRow.push(canvas.toDataURL());
 				}
 
-				pieces.push(currentColumn);
+				pieces.push(currentRow);
 			}
 
-			console.log('will transpose this:', pieces);
-			this.setState({
-				pieces: pieces[0].map((col, i) => pieces.map(row => row[i]))
-			});
+			this.setState({ pieces });
 		};
 
 		image.src = src;
@@ -63,29 +60,36 @@ class TiledImage extends Component {
 
 	render() {
 		const { pieces } = this.state;
-		const { tiles } = this.props;
+		const { tiles, columns } = this.props;
 
-		console.log('dem pieces:', pieces);
+		const rowLimit = Math.ceil((tiles / columns) - 1);
+		let columnLimit = (tiles % columns) - 1;
+
+		if (columnLimit === -1) {
+			columnLimit = columns;
+		}
 
 		return (
 			<table>
 				<tbody>
 					{
-						pieces.map((column, columnIndex) => (
-							<tr>
-								{
-									column
-										.filter((_, rowIndex) => (
-											rowIndex * columnIndex <= tiles
-										))
-										.map((piece) => (
-											<td>
-												<img src={ piece } />
-											</td>
-										))
-								}
-							</tr>
-						))
+						pieces
+							.filter((_, rowIndex) => rowIndex <= rowLimit)
+							.map((row, rowIndex) => (
+								<tr>
+									{
+										row
+											.filter((_, columnIndex) => (
+												rowIndex < rowLimit || columnIndex <= columnLimit
+											))
+											.map((piece) => (
+												<td>
+													<img src={ piece } />
+												</td>
+											))
+									}
+								</tr>
+							))
 					}
 				</tbody>
 			</table>
