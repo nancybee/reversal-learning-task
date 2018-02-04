@@ -24,6 +24,8 @@ class TiledImage extends Component {
 
 		image.onload = () => {
 			for (let x = 0; x < rows; ++x) {
+				let currentColumn = [];
+
 				for (let y = 0; y < columns; ++y) {
 					let canvas = document.createElement('canvas');
 					let context = canvas.getContext('2d');
@@ -34,17 +36,26 @@ class TiledImage extends Component {
 					context.drawImage(
 						image,
 						x * canvas.width, y * canvas.height,
+
+						// width of each tile
 						canvas.width, canvas.height,
+
+						// space between each piece
 						0, 0,
+
 						canvas.width, canvas.height
 					);
 
-					pieces.push(canvas.toDataURL());
+					currentColumn.push(canvas.toDataURL());
 				}
+
+				pieces.push(currentColumn);
 			}
 
-			console.log('pieces:', pieces);
-			this.setState({ pieces });
+			console.log('will transpose this:', pieces);
+			this.setState({
+				pieces: pieces[0].map((col, i) => pieces.map(row => row[i]))
+			});
 		};
 
 		image.src = src;
@@ -54,21 +65,30 @@ class TiledImage extends Component {
 		const { pieces } = this.state;
 		const { tiles } = this.props;
 
-		const lower = Math.min(pieces.length, tiles);
+		console.log('dem pieces:', pieces);
 
 		return (
-			<div className="image-tiles">
-				{
-					Array(lower)
-						.fill()
-						.map((_, index) => (
-							<img
-								src={ pieces[index] }
-								key={ index.toString() }
-							/>
+			<table>
+				<tbody>
+					{
+						pieces.map((column, columnIndex) => (
+							<tr>
+								{
+									column
+										.filter((_, rowIndex) => (
+											rowIndex * columnIndex <= tiles
+										))
+										.map((piece) => (
+											<td>
+												<img src={ piece } />
+											</td>
+										))
+								}
+							</tr>
 						))
-				}
-			</div>
+					}
+				</tbody>
+			</table>
 		);
 	}
 }
