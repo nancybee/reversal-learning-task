@@ -1,6 +1,6 @@
 import React from 'react';
-import image from 'assets/koi-fish.png';
-import TiledImage from 'components/TiledImage';
+import image from '/assets/koi-fish.png';
+import TiledImage from '/components/TiledImage';
 
 const imageObj = {
 	src: image,

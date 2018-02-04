@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
-import Keyable from 'components/Keyable';
-import Progress from 'features/Progress';
-import Conclusion from 'features/Conclusion';
+import Keyable from '/components/Keyable';
+import Progress from '/features/Progress';
+import Conclusion from '/features/Conclusion';
 
 const increaseCircleSuccessRate = (rate) => rate >= 1 ? 1 : rate + 0.05;
 
