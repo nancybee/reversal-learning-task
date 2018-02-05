@@ -29,7 +29,7 @@ export default class Trial extends Component {
 			This is how many trials the experiment runs for.
 			You may change this value for more or less trials.
 			*/
-			limit: 1,
+			limit: 10,
 
 			pointsEarned: 0,
 			totalPoints: 0,
