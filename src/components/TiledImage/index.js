@@ -12,7 +12,6 @@ class TiledImage extends Component {
 
 	componentDidMount() {
 		const image = new Image();
-		const pieces = [];
 		const {
 			rows, columns,
 			image: {
@@ -22,35 +21,40 @@ class TiledImage extends Component {
 			}
 		} = this.props;
 
+		const sliceImage = () => Array(rows)
+			.fill()
+			.map((_, rowIndex) => (
+				Array(columns)
+					.fill()
+					.map((_, columnIndex) => {
+						const canvas = document.createElement('canvas');
+						const context = canvas.getContext('2d');
+
+						canvas.width = width / columns;
+						canvas.height = height / rows;
+
+						context.drawImage(
+							image,
+							columnIndex * canvas.width,
+							rowIndex * canvas.height,
+
+							// width/height of each tile
+							canvas.width, canvas.height,
+
+							// space between each piece
+							0, 0,
+
+							canvas.width, canvas.height
+						);
+
+						return canvas.toDataURL();
+					})
+			));
+
 		image.onload = () => {
-			for (let y = 0; y < rows; ++y) {
-				let currentRow = [];
+			const pieces = sliceImage();
 
-				for (let x = 0; x < columns; ++x) {
-					let canvas = document.createElement('canvas');
-					let context = canvas.getContext('2d');
-
-					canvas.width = width / columns;
-					canvas.height = height / rows;
-
-					context.drawImage(
-						image,
-						x * canvas.width, y * canvas.height,
-
-						// width/height of each tile
-						canvas.width, canvas.height,
-
-						// space between each piece
-						0, 0,
-
-						canvas.width, canvas.height
-					);
-
-					currentRow.push(canvas.toDataURL());
-				}
-
-				pieces.push(currentRow);
-			}
+			console.log('these pieces:', pieces);
 
 			this.setState({ pieces });
 		};
@@ -80,7 +84,8 @@ class TiledImage extends Component {
 									{
 										row
 											.filter((_, columnIndex) => (
-												rowIndex < rowLimit || columnIndex <= columnLimit
+												rowIndex < rowLimit ||
+												columnIndex <= columnLimit
 											))
 											.map((piece) => (
 												<td>

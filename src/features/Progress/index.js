@@ -18,7 +18,7 @@ export default ({ pointsEarned, totalPoints }) => (
 			image={ imageObj }
 			rows={ 3 }
 			columns={ 5 }
-			tiles={ 13 }
+			tiles={ 15 }
 		/>
 	</div>
 );
