@@ -16,9 +16,9 @@ export default ({ pointsEarned, totalPoints }) => (
 
 		<TiledImage
 			image={ imageObj }
-			rows={ 3 }
-			columns={ 5 }
-			tiles={ 15 }
+			rows={ 10 }
+			columns={ 7 }
+			tiles={ totalPoints }
 		/>
 	</div>
 );
